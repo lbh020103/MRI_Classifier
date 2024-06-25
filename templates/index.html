@@ -1,0 +1,352 @@
+<html>
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Image Classification</title>
+
+    <style>
+      body {
+        padding: 0px;
+        margin: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+      }
+
+      body,
+      html {
+        height: 100%;
+      }
+      html,
+      body {
+        padding: 0px;
+        margin: 0px;
+        background-color: #8c8c8c;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        overflow-x: scroll;
+      }
+      .header {
+        background-color: rgba(0, 0, 0, 0.3);
+
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: large;
+        color: white;
+
+        text-align: center;
+        padding: 30px;
+      }
+      /*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+      .footer {
+        --color-background: #f4f4f4;
+        --color-box-background: #eaeaea;
+        color: var(--color-default);
+        background-color: var(--color-background);
+        font-size: 14px;
+        padding-bottom: 50px;
+      }
+
+      .footer .footer-top {
+        padding-top: 50px;
+      }
+
+      .footer .footer-about .logo {
+        line-height: 0;
+        margin-bottom: 25px;
+      }
+
+      .footer .footer-about .logo img {
+        max-height: 40px;
+        margin-right: 6px;
+      }
+
+      .footer .footer-about .logo span {
+        color: var(--color-secondary);
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-family: var(--font-primary);
+      }
+
+      .footer .footer-about p {
+        font-size: 14px;
+        font-family: var(--font-primary);
+      }
+
+      .footer .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(var(--color-default-rgb), 0.5);
+        font-size: 16px;
+        color: rgba(var(--color-default-rgb), 0.5);
+        margin-right: 10px;
+        transition: 0.3s;
+      }
+
+      .footer .social-links a:hover {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+
+      .footer h4 {
+        color: var(--color-secondary);
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 12px;
+      }
+
+      .footer .footer-links {
+        margin-bottom: 30px;
+      }
+
+      .footer .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer .footer-links ul i {
+        padding-right: 2px;
+        font-size: 12px;
+        line-height: 0;
+      }
+
+      .footer .footer-links ul li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer .footer-links ul li:first-child {
+        padding-top: 0;
+      }
+
+      .footer .footer-links ul a {
+        color: rgba(var(--color-default-rgb), 0.8);
+        display: inline-block;
+        line-height: 1;
+      }
+
+      .footer .footer-links ul a:hover {
+        color: var(--color-primary);
+      }
+
+      .footer .footer-contact p {
+        margin-bottom: 5px;
+      }
+
+      .footer .copyright {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-color: var(--color-box-background);
+      }
+
+      .footer .copyright p {
+        margin-bottom: 0;
+      }
+
+      .footer .credits {
+        margin-top: 6px;
+        font-size: 13px;
+      }
+
+      .info {
+        text-align: left;
+        color: gray;
+        width: 30%;
+        margin: auto;
+        padding: 20px;
+        font-size: 14px;
+      }
+
+      .content {
+        width: 100%;
+      }
+
+      .upload_part {
+        background-color: rgba(0, 0, 0, 0.3);
+        text-align: center;
+        padding: 40px;
+      }
+
+      .upload_button {
+        background-color: #feed06;
+        color: black;
+        padding: 15px;
+        font-size: 16px;
+        border: 0px;
+        border-radius: 5px;
+        -webkit-box-shadow: 6px 8px 18px -5px rgba(0, 0, 0, 0.38);
+        -moz-box-shadow: 6px 8px 18px -5px rgba(0, 0, 0, 0.38);
+        box-shadow: 6px 8px 18px -5px rgba(0, 0, 0, 0.38);
+        cursor: pointer;
+      }
+
+      .upload_hint {
+        margin: 10px;
+        font-size: 14px;
+        color: rgb(200, 200, 200);
+      }
+
+      .result_part {
+        text-align: center;
+        padding: 40px;
+      }
+
+      .result_title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .result_id {
+        padding: 10px;
+        margin: 15px;
+        font-size: 16px;
+      }
+
+      .result_id_number {
+        margin: 15px;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #feed06;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">DEMO Alzheimer disease</div>
+    <div class="content">
+      <div class="upload_part">
+        <button class="upload_button" id="upload_button">
+          Upload image to predict...
+        </button>
+        <div class="upload_hint" id="upload_hint">
+          PNG, JPG and JPEG are supported
+        </div>
+        <form action="/" method="POST" enctype="multipart/form-data" id="form">
+          <input
+            type="file"
+            name="file"
+            id="fileinput"
+            style="display: none"
+            accept="image/*"
+          />
+        </form>
+      </div>
+
+      <div class="result_part">
+        {% if prediction %}
+        <h2>{{ prediction }}</h2>
+        {% if image_url %}
+        <img
+          src="{{ image_url }}"
+          alt="Uploaded Image"
+          style="max-width: 500px"
+        />
+        {% endif %} {% endif %}
+      </div>
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span>IRecognition</span>
+            </a>
+            <p>
+              MyCIFAR-10-Classifier: A Deep Learning Project for Image
+              Classification" This repository contains code for training a deep
+              learning model on the CIFAR-10 dataset and using it in a web
+              interface for image classification.
+            </p>
+            <div class="social-links d-flex mt-4">
+              <a href="https://www.linkedin.com/in/ihor-voitiuk/"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://t.me/ihor_vt" class="telegram" target="_blank"
+                ><i class="bi bi-telegram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+            </ul>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4>Contact Us</h4>
+            <p>Ukraine</p>
+            <p>
+              <strong>Email:</strong>
+              <a
+                aria-label="Email Ihor"
+                href="mailto:hoaibao.020103@gmail.com"
+                target="_blank"
+                data-position="top"
+                data-tooltip="Email Ihor"
+                class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"
+                ><i class="fa fa-envelope"></i></a
+              ><a
+                aria-label="Email Ihor"
+                href="mailto:hoaibao.020103@gmail.com"
+                class="hoverline"
+                >ihorvoitiukk@gmail.com</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>
+          &copy; <span>Copyright</span> <strong class="px-1"></strong>
+          <span><a href="/">LHB</a></span>
+        </p>
+      </div>
+    </footer>
+    <!-- End Footer -->
+  </body>
+  <script>
+    $("#upload_button").click(function () {
+      $("#fileinput").trigger("click");
+    });
+
+    $("#fileinput").change(function () {
+      $("#form").submit();
+      $("#upload_hint").text(
+        "Đang tải file " + $("#fileinput")[0].files[0].name + " lên server..."
+      );
+    });
+  </script>
+</html>
