@@ -1,0 +1,7 @@
+numpy
+flask
+pillow
+flask_restful
+tensorflow
+pickle
+PIL
